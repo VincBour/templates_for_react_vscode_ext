@@ -1,9 +1,9 @@
 {
 	"name": "templates_for_react",
-	"displayName": "TS Templates",
-	"description": "This extension help with creating folder templates",
+	"displayName": "TemplatesForReact",
+	"description": "This extension the creation of folder from templates",
 	"version": "1.0.0",
-	"publisher": "vboursicot",
+	"publisher": "vincentB",
 	"engines": {
 		"vscode": "^1.57.0"
 	},
@@ -16,7 +16,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://vboursicot@bitbucket.org/talentsoft/foldertemplate_vscodeext.git"
+		"url": "https://github.com/VincBour/templates_for_react_vscode_ext.git"
 	},
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -38,7 +38,7 @@
 		"configuration": {
 			"title": "Templates For React",
 			"properties": {
-				"fctemplates.structures": {
+				"templates_for_react.structures": {
 					"type": "array",
 					"scope": "window",
 					"default": [
