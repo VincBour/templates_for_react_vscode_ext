@@ -46,70 +46,70 @@
 							"name": "Context",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "ComponentStory",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "Component",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "Function",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "useMutation Hooks",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "useQuery Hooks",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "Machine xstate",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "ActionAssign xstate",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "Guard xstate",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "Hook",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						},
 						{
 							"name": "StoreZustand",
 							"disableTemplate": false,
 							"withDirectory": true,
-							"nammingConvention": "noNC"
+							"namingConvention": "noNC"
 						}
 					],
-					"description": "you can enable/disable template with the 'disableTemplate' property. If disableTemplate is true then the template will no longer appear in the list of available templates.\n you can add a convention namming with the 'nammingConvention' property. By default 'nammingConvention' is noNC (no namming convention). You can modify noNC with: camelCase, pascalCase, kebabCase or snakeCase"
+					"description": "you can enable/disable template with the 'disableTemplate' property. If disableTemplate is true then the template will no longer appear in the list of available templates.\n you can add a convention naming with the 'namingConvention' property. By default 'namingConvention' is noNC (no naming convention). You can modify noNC with: camelCase, pascalCase, kebabCase or snakeCase"
 				}
 			}
 		}

@@ -49,15 +49,15 @@ export const folderTemplatesStructure = async (resource: Uri | string | undefine
     }
     channel.appendLine(`get Component Name => ${name}`);
 
-    let nammingConvention = configurationTemplate?.nammingConvention;
-    if (!nammingConvention && !(nammingConvention === 'pascalCase' || nammingConvention === 'camelCase' || nammingConvention === 'noNC')) {
-        showInfo(`property nammingConvention is missing for the template ${configurationTemplate?.name}`);
-        nammingConvention = 'noNC';
+    let namingConvention = configurationTemplate?.namingConvention;
+    if (!namingConvention && !(namingConvention === 'pascalCase' || namingConvention === 'camelCase' || namingConvention === 'noNC')) {
+        showInfo(`property namingConvention is missing for the template ${configurationTemplate?.name}`);
+        namingConvention = 'noNC';
     }
 
     
 
-    const formatedName = nammingConvention !== 'noNC' ? changeCase(name, nammingConvention) : name;
+    const formatedName = namingConvention !== 'noNC' ? changeCase(name, namingConvention) : name;
 
     await createStructure(
         formatedName,

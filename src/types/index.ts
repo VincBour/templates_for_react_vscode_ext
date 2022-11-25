@@ -3,7 +3,7 @@ export type FolderType = {
     structure: FileSettingsType[];
     withDirectory?: boolean;
     disableTemplate?: boolean;
-    nammingConvention?: string;
+    namingConvention?: string;
 };
 
 export type FileSettingsType = {
