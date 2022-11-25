@@ -1,3 +1,2 @@
-export { default } from "./[FCName]Provider";
-export { default as use[FCName] } from "./use[FCName]";
-export * from "./[FCName]Provider";
+export { [FCName]Provider } from "./[FCName]Provider";
+export {  use[FCName]Context } from "./use[FCName]Context";

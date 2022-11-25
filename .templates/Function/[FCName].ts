@@ -1,5 +1,3 @@
 export const [FCName] = () => {
-
+    return 2;
 };
-
-export default [FCName];

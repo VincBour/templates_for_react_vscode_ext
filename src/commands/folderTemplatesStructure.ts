@@ -39,10 +39,13 @@ export const folderTemplatesStructure = async (resource: Uri | string | undefine
     }
     channel.appendLine(`pick template => ok`);
 
-    const name = await getComponentName();
+    let name = await getComponentName();
     if (!name) {
         showError('Something went wrong, No Component Name Selected !!');
         return;
+    }
+    if (template.name === "Hook") {
+        name = name.slice(0,3) === "use" ? name : `use${name}`;
     }
     channel.appendLine(`get Component Name => ${name}`);
 
@@ -51,6 +54,8 @@ export const folderTemplatesStructure = async (resource: Uri | string | undefine
         showInfo(`property nammingConvention is missing for the template ${configurationTemplate?.name}`);
         nammingConvention = 'noNC';
     }
+
+    
 
     const formatedName = nammingConvention !== 'noNC' ? changeCase(name, nammingConvention) : name;
 

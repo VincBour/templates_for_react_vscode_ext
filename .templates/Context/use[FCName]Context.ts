@@ -1,7 +1,7 @@
 import * as React from "react";
 import { [FCName] } from "./[FCName]Provider";
 
-const use[FCName]Context = () => {
+export const use[FCName]Context = () => {
   const context = React.useContext([FCName]);
 
   // Uncomment if your context doesn't have reasonable defaults
@@ -13,5 +13,3 @@ const use[FCName]Context = () => {
 
   return context;
 };
-
-export default use[FCName]Context;

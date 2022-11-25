@@ -55,12 +55,6 @@
 							"nammingConvention": "noNC"
 						},
 						{
-							"name": "Functional Component",
-							"disableTemplate": false,
-							"withDirectory": true,
-							"nammingConvention": "noNC"
-						},
-						{
 							"name": "Component",
 							"disableTemplate": false,
 							"withDirectory": true,
@@ -68,18 +62,6 @@
 						},
 						{
 							"name": "Function",
-							"disableTemplate": false,
-							"withDirectory": true,
-							"nammingConvention": "noNC"
-						},
-						{
-							"name": "Page",
-							"disableTemplate": false,
-							"withDirectory": true,
-							"nammingConvention": "noNC"
-						},
-						{
-							"name": "Page With ReactQuery",
 							"disableTemplate": false,
 							"withDirectory": true,
 							"nammingConvention": "noNC"
@@ -110,6 +92,18 @@
 						},
 						{
 							"name": "Guard xstate",
+							"disableTemplate": false,
+							"withDirectory": true,
+							"nammingConvention": "noNC"
+						},
+						{
+							"name": "Hook",
+							"disableTemplate": false,
+							"withDirectory": true,
+							"nammingConvention": "noNC"
+						},
+						{
+							"name": "StoreZustand",
 							"disableTemplate": false,
 							"withDirectory": true,
 							"nammingConvention": "noNC"

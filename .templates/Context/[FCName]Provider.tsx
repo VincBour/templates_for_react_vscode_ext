@@ -4,8 +4,7 @@ export interface [FCName]ContextProps { }
 
 export const [FCName] = React.createContext<[FCName]ContextProps>({});
 
-const [FCName]Provider: React.FC<[FCName]ContextProps> = ({ children }) => {
+export const [FCName]Provider = ({ children }: PropsWithChildren<[Name]ContextProps>) => {
   return <[FCName].Provider value={{}}>{children}</[FCName].Provider>;
 };
 
-export default [FCName]Provider;

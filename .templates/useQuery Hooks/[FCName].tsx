@@ -1,10 +1,8 @@
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query";
 
-const [FCName] = () => {
-    return useQuery("queryHooks", () => {
-        // return fetch("/api/data") as json
-        return "Hello";
-    });
+export const [FCName] = () => {
+  return useQuery("queryHooks", () => {
+    // return fetch("/api/data") as json
+    return "Hello";
+  });
 };
-
-export default [FCName];

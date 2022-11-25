@@ -1,2 +1,1 @@
-export { default } from "./[FCName]";
-export * from './[FCName]';
+export { [FCName] } from "./[FCName]";

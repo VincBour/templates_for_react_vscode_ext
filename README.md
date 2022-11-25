@@ -22,28 +22,26 @@ In User Settings go to Extensions > Folder Templates
 You can enable/disable a template with the **disableTemplate** property in the extension setting.
 If **disableTemplate** is *true*, then the corresponding template will no longer appear in the list of available templates.
 
-### nammingConvention ###
+### namingConvention ### ###
 
-you can add a convention namming with the **nammingConvention** property.
-By default **nammingConvention** is equal to *'noNC'* (no namming convention).
+you can add a convention naming with the **namingConvention** property.
+By default **namingConvention** is equal to *'noNC'* (no naming convention).
 You can modify *'noNC'* with: *'camelCase'*, *'pascalCase'* or *'snakeCase'*".
 ___
 
-## Templates Availables ##
+## Templates Available ##
 
 + [Context](#context)
 
-+ [ComponentStory](#ds-component)
++ [ComponentStory](#componentstory)
 
-+ [Functional Component](#functionnal-component)
++ [Component](#component)
 
-+ [Component](#rec-component)
++ [Function](#function)
 
-+ [Function](#rec-function)
++ [Hook](#hook)
 
-+ [Page](#rec-pages)
-
-+ [Page With ReactQuery](#rec-pages-with-reactquery)
++ [Store Zustand](#storezustand)
 
 + [useMutation Hooks](#usemutation-hooks)
 
@@ -51,78 +49,74 @@ ___
 
 + [Machine xstate](#machine-xstate)
 
-+ [Action xstate](#action-xstate)
++ [Action Assign xstate](#action-assign-xstate)
 
 + [Guard xstate](#guard-xstate)
 ___
 
 ## Context ##
 
-### Structure ###
+### Structure Context ###
 
-```
+```text
 [Name]
 |--[Name]Provider.tsx
-|--use[Name].ts
+|--use[Name]Context.ts
 |--index.ts
 ```
 
-### Details ###
+### Details Context ###
 
 + [Name]Provider.tsx
 
 ```typescript
 import * as React from "react";
 
-export interface [FCName]ContextProps { }
+export interface [Name]ContextProps { }
 
-export const [FCName] = React.createContext<[FCName]ContextProps>({});
+export const [Name] = React.createContext<[Name]ContextProps>({});
 
-const [FCName]Provider: React.FC<[FCName]ContextProps> = ({ children }) => {
-  return <[FCName].Provider value={{}}>{children}</[FCName].Provider>;
+export const [Name]Provider = ({ children }: PropsWithChildren<[Name]ContextProps>) => {
+  return <[Name].Provider value={{}}>{children}</[Name].Provider>;
 };
-
-export default [FCName]Provider;
 
 ```
 
-+ use[Name].ts
++ use[Name]Context.ts
 
 ```typescript
 import * as React from "react";
-import { [FCName] } from "./[FCName]Provider";
+import { [Name] } from "./[Name]Provider";
 
-const use[FCName]Context = () => {
-  const context = React.useContext([FCName]);
+export const use[Name]Context = () => {
+  const context = React.useContext([Name]);
 
   // Uncomment if your context doesn't have reasonable defaults
   //   if (context === undefined) {
   //     throw new Error(
-  //       "use[FCName]Context must be used within a [FCName]Provider"
+  //       "use[Name]Context must be used within a [Name]Provider"
   //     );
   //   }
 
   return context;
 };
 
-export default use[FCName]Context;
 ```
 
 + index.ts
 
 ```typescript
-export { default } from "./[FCName]Provider";
-export { default as use[FCName] } from "./use[FCName]";
-export * from "./[FCName]Provider";
+export { [Name]Provider } from "./[Name]Provider";
+export {  use[Name]Context } from "./use[Name]Context";
 ```
 
 ___
 
-## DS Component ##
+## ComponentStory ##
 
-### Structure ###
+### Structure ComponentStory ###
 
-```
+```text
 [Name]
 |--[Name].spec.tsx
 |--[Name].stories.tsx
@@ -130,18 +124,18 @@ ___
 |--index.ts
 ```
 
-### Details ###
+### Details ComponentStory ###
 
 + [Name].spec.tsx
 
 ```typescript
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import [FCName], { [FCName]Props } from './[FCName]';
+import [Name], { [Name]Props } from './[Name]';
 
-describe('<[FCName] />', () => {
+describe('<[Name] />', () => {
     it('should render', () => {
-        const { container }  = render(<[FCName] />);
+        const { container }  = render(<[Name] />);
         expect(container).toBeInTheDocument();
     });
 });
@@ -152,15 +146,15 @@ describe('<[FCName] />', () => {
 ```typescript
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react';
-import [FCName], { [FCName]Props } from './[FCName]';
+import [Name], { [Name]Props } from './[Name]';
 
 export default {
-    title: "/[FCName]",
-    component: [FCName],
+    title: "/[Name]",
+    component: [Name],
 } as Meta;
 
-const Template: Story<[FCName]Props> = (args) => {
-    return <[FCName] {...args} />;
+const Template: Story<[Name]Props> = (args) => {
+    return <[Name] {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -171,111 +165,49 @@ export const Default = Template.bind({});
 ```typescript
 import * as React from 'react';
 
-export interface [FCName]Props {}
+export interface [Name]Props {}
 
-const [FCName]: React.FC<[FCName]Props> = ({}) => {
-    return <div>[FCName]</div>
+const [Name]: React.FC<[Name]Props> = ({}) => {
+    return <div>[Name]</div>
 };
-export default [FCName];
+
 ```
 
 + index.ts
 
 ```typescript
-export { default } from "./[FCName]";
-export * from './[FCName]';
+export { [Name] } from "./[Name]";
 ```
-
 ___
 
-## Functionnal Component ##
+## Component ##
 
-### Structure ###
+### Structure Component ###
 
-```
+```text
 [Name]
 |--[Name].spec.tsx
 |--[Name].tsx
-|--index.ts
 ```
 
-### Details ###
-
-+ [Name].spec.tsx
-
-```typescript
-import * as React from 'react';
-import { render, screen } from '@testing-library/react';
-import user from '@testing-library/user-event';
-import { [FCName] } from './[FCName]';
-
-describe('<[FCName] />', () => {
-    it('should render [FCName]', () => {
-        const { container } = render(<[FCName] />);
-        expect(container).toBeInTheDocument();
-    });
-});
-```
-
-+ [Name].tsx
-
-```typescript
-import * as React from 'react';
-import { makeStyles } from '@talentsoft/design-system';
-
-const useStyles = makeStyles((theme) => ({
-    root: {}
-}));
-
-export interface [FCName]Props {}
-
-export const [FCName]: React.FC<[FCName]Props> = ({}) => {
-    const classes = useStyles();
-    return <div className={classes.root}>[FCName]</div>;
-};
-
-export default [FCName];
-```
-
-+ index.ts
-
-```typescript
-export { default } from "./[FCName]";
-export * from "./[FCName]";
-```
-
-___
-
-## REC Component ##
-
-### Structure ###
-
-```
-[Name]
-|--__spec__
-|   |--[Name].spec.tsx
-|--[Name].tsx
-```
-
-### Details ###
+### Details Component ###
 
 + [Name].spec.tsx
 
 ```typescript
 import * as React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
-import user from '@testing-library/user-event';
-import { [FCName] } from '../[FCName]';
+import { [Name] } from '../[Name]';
 
-describe('[FCName]', () => {
+describe('[Name]', () => {
     afterEach(() => {
         cleanup();
     });
-    it('should render [FCName]', () => {
+    it('should render [Name]', () => {
         // Given
 
         // When
-        const { container } = render(<[FCName] />);
+        const { container } = render(<[Name] />);
 
         //Then
         expect(container).toBeInTheDocument();
@@ -288,41 +220,39 @@ describe('[FCName]', () => {
 ```typescript
 import * as React from 'react';
 
-export interface [FCName]Props {
+export interface [Name]Props {
 
 }
 
-export const [FCName]: React.FC<[FCName]Props> = () => {
+export const [Name]: React.FC<[Name]Props> = () => {
     return (
         <div>
-
+            [Name]
         </div>
     );
 };
 
-export default [FCName];
-
-[FCName].displayName = '[FCName]';
+[Name].displayName = '[Name]';
 ```
 
-## REC Function ##
+## Function ##
 
-### Structure ###
+### Structure Function ###
 
-```
+```text
 [Name]
 |--[Name].spec.ts
 |--[Name].ts
 ```
 
-### Details ###
+### Details Function ###
 
 + [Name].spec.ts
 
 ```typescript
-import { [FCName] } from "./[FCName]";
+import { [Name] } from "./[Name]";
 
-describe('[FCName]', () => {
+describe('[Name]', () => {
     it('should ', () => {
         
     });
@@ -332,711 +262,134 @@ describe('[FCName]', () => {
 + [Name].ts
 
 ```typescript
-export const [FCName] = () => {
+export const [Name] = () => {
 
 };
-
-export default [FCName];
 ```
 
 ___
 
-## REC Pages ##
+## Hook ##
 
-### Structure ###
+### Structure Hook ###
+
+```text
+use[Name]
+|--use[Name].spec.tsx
+|--use[Name].tsx
+```
+
+### Details Hook ###
+
++ use[Name].tsx
+
+```typescript
+import * as React from "react";
+
+export const use[Name] = () => {
+  return () => {
+    return 2;
+  };
+};
 
 ```
+
++ use[Name].spec.tsx
+
+```typescript
+import { renderHook } from '@testing-library/react-hooks';
+import { [Name] } from './[Name]';
+
+describe('[Name]', () => {
+    it('should return 2', () => {
+        const { result } = renderHook(() => [Name]());
+        const value = result.current();
+        expect(value).toEqual(2);
+    });
+});
+
+```
+
+__
+
+## StoreZustand ##
+
+### Structure StoreZustand ###
+
+```text
 [Name]
-|--__mocks__
-|--__spec__
-|  |--[Name]Context.spec.tsx
-|  |--[Name]Page.spec.tsx
-|--services
-|  |--__spec__
-|  |  |--index.spec.ts
-|  |--index.ts
-|--store
-|  |--__spec__
-|  |  |--action.spec.ts
-|  |  |--reducer.spec.ts
-|  |--action-types.ts
-|  |--action.ts
-|  |--index.ts
-|  |--initialState.ts
-|  |--reducer.ts
-|--styles
-|  |--index.ts
-|--types
-|  |--index.ts
-|--utils
-|  |--__spec__
-|  |  |--index.spec.ts
-|  |--index.ts
-|--[Name]Context.tsx
-|--[Name]Page.tsx
-|--index.ts
+|--action
+    |--index.ts
+    |--setIndex.tsx
+|--use[Name].tsx
 ```
 
-### Details ###
+### Details StoreZustand ###
 
-+ spec/[Name]Context.spec.tsx
-
-```typescript
-import * as React from 'react';
-import { render, screen } from '@testing-library/react';
-import { initialState } from '../store/initialState';
-import { use[FCName]Dispatch, use[FCName]State, [FCName]Provider } from '../[FCName]Context';
-import { [FCName]StateType } from '../types';
-
-jest.mock('../store');
-jest.mock('react', () => ({
-    ...jest.requireActual('react'),
-    useContext: jest.fn(),
-}));
-
-describe('[FCName]Context', () => {
-    it('should return context when use[FCName]State is called', () => {
-        // Given
-        jest.spyOn(React, 'useContext').mockReturnValue(initialState);
-
-        // When
-        const context = use[FCName]State();
-
-        // Then
-        expect(context).toEqual({});
-
-    });
-});
-```
-
-+ spec/[Name]Page.spec.tsx
++ use[Name].tsx
 
 ```typescript
- 
-import * as React from 'react';
-import { render } from 'react-dom';
-import { renderToDOM, [FCName]Page } from '../[FCName]Page';
+import create, { StoreApi } from "zustand";
+import { setIndex } from "./actions";
 
-jest.mock('react-dom', () => ({
-    render: jest.fn(),
-}));
-jest.mock('../[FCName]Context.tsx');
-
-
-describe('[FCName]Page', () => {
-    it('should set the initialState', () => {
-        
-    });
-});
-```
-
-+ services/spec/index.spec.ts
-
-```typescript
-import * as Fetch from '../../../../utils';
-
-jest.mock('../../../../utils', () => ({
-    Get: jest.fn(() => Promise.resolve({
-        json: () => { }
-    })),
-    Post: jest.fn((url, data) => Promise.resolve({
-        json: () => { }
-    })),
-}));
-
-describe('[FCName]Service', () => {
-    it('should ', () => {
-        // Given
-
-        // When
-
-        // Then
-
-    });
-});
-```
-
-+ store/spec/reducer.spec.ts
-
-```typescript
-import * as React from 'react';
-import { initialState } from '../initialState';
-import { reducer } from '../reducer';
-
-describe('[FCName] reducer', () => {
-    it('should return initialState', () => {
-        expect(initialState).toEqual({});
-    });
-});
-```
-
-+ store/ action-types.ts
-
-```typescript
-export const SAMPLE = '[FCName]/SAMPLE'
-```
-
-+ store/action.ts
-
-```typescript
-import * as ActionTypes from './action-types';
-import { DispatchType } from '../types';
-
-export const GetSample = (dispatch: DispatchType) => dispatch({
-    type: ActionTypes.SAMPLE
-});
-```
-
-+ store/index.ts
-
-```typescript
-export { reducer } from './reducer';
-export { initialState } from './initialState';
-```
-
-+ store/initialState.ts
-
-```typescript
-import { [FCName]StateType } from '../types';
-
-export const initialState: [FCName]StateType = {}
-```
-
-+ store/reducer.ts
-
-```typescript
-import * as ActionTypes from './action-types';
-import { [FCName]StateType } from '../types';
-
-export const reducer = (state: [FCName]StateType, action: ActionType ): [FCName]StateType => {
-    switch (action.type) {
-        default:
-            return state;
-    }
+interface [Name]State {
+    index: number;
 };
-```
+interface [Name]Actions {
+    setIndex: (value: number) => void;
+};
 
-+ styles/index.ts
-
-```typescript
-import { makeStyles } from '@talentsoft/design-system/styles';
-
-export const useStyles = makeStyles((theme) => ({
-    root: {
-        
-    }
-}));
-```
-
-+ types/index.ts
-
-```typescript
-export interface I[FCName]Model extends IBackOfficePageModel {
-    
+const initialState: [Name]State = {
+    index: 0,
 }
 
-type Sample = {
-    type: '[FCName]/SAMPLE'
-};
+export type [Name]StoreType = [Name]State & [Name]Actions;
 
-export type ActionType = (
-    Sample
-);
+export type Set[Name]Store = StoreApi<[Name]StoreType>["setState"];
+export type Get[Name]Store = StoreApi<[Name]StoreType>["getState"];
 
-export type DispatchType = (action: ActionType) => void;
-
-export interface [FCName]StateType {
-
-};
-
-export type [FCName]ProviderType = { children: React.ReactNode, initialState: [FCName]StateType };
+export const use[Name]Store = create<[Name]State & [Name]Actions>(set => ({
+    ...initialState,
+    setIndex: setIndex(set)
+}))
 ```
 
-+ utils/spec/index.spec.ts
++ action/setIndex.ts
 
 ```typescript
-describe('Name of the group', () => {
-    it('should ', () => {
-        // Given
+import { Set[Name]Store } from "../use[Name]Store";
 
-        // When
+export const setIndex = (set: Set[Name]Store) => (value: number) =>
+  set(_state => ({
+    index: value
+  }));
 
-        // Then
-    });
-});
 ```
 
-+ [Name]Context.tsx
++ action/index.ts
 
 ```typescript
-import * as React from 'react';
-import { reducer } from './store/reducer';
-import { DispatchType, [FCName]ProviderType, [FCName]StateType } from './types';
-
-const [FCName]Context = React.createContext<[FCName]StateType | undefined>(undefined);
-const [FCName]DispatchContext = React.createContext<DispatchType | undefined>(undefined);
-
-const [FCName]Provider = ({ initialState, children}: [FCName]ProviderType) => {
-    const [state, dispatch] = React.useReducer(reducer, initialState);
-    return (
-        <[FCName]Context.Provider value={state}>
-            <[FCName]DispatchContext.Provider value={dispatch}>
-                {children}
-            </[FCName]DispatchContext.Provider>
-        </[FCName]Context.Provider>
-    );
-};
-
-const use[FCName]State = () => {
-    const context = React.useContext([FCName]Context);
-
-    if (context === undefined) {
-        throw new Error('use[FCName]State must be used within a [FCName]Provider');
-    }
-
-    return context;
-};
-
-const use[FCName]Dispatch = () => {
-    const context = React.useContext([FCName]DispatchContext);
-
-    if (context === undefined) {
-        throw new Error('use[FCName]Dispatch must be used within a [FCName]Provider');
-    }
-
-    return context;
-};
-
-export { [FCName]Provider, use[FCName]State, use[FCName]Dispatch };
+export { setIndex } from "./setIndex";
 ```
 
-+ [Name]Page.tsx
-
-```typescript
-import * as React from 'react';
-import { render } from 'react-dom';
-import PageBase from '../page-base';
-import { RecruitingThemeProvider } from '../../assets/Theme/recruiting-theme';
-import { [FCName]Provider } from './VacancyCreationContext';
-import { I[FCName]Model, [FCName]StateType } from './types';
-import { initialState } from './store';
-
-export class [FCName]Page extends PageBase {
-    initialState: [FCName]StateType;
-
-    constructor(model: I[FCName]Model) {
-        super('[FCName]');
-        this.initialState = {
-            ...initialState,
-            breadcrumbs: model.NavigationContext.Breadcrumbs.map(b => ({
-                label: b.Label,
-                link: b.Link
-            })),
-            currentCulture: model.CurrentCulture,
-            pageTitle: model.PageTitle,
-            themeColor: model.ThemeColor,
-        };
-    };
-    
-    run(htmlElement: HTMLElement) {
-        const Component = () => (
-                <RecruitingThemeProvider
-                    productionPrefix="rec[FCName]"
-                    currentCulture={this.initialState.currentCulture}
-                >
-                    <[FCName]Provider initialState={this.initialState}>
-                       // YOUR COMPONENT 
-                    </[FCName]Provider>
-                </RecruitingThemeProvider>
-        );
-        
-        renderToDOM(Component, htmlElement);
-    }
-}
-
-export const renderToDOM = (Component: React.FunctionComponent, root: HTMLElement | null): void => {
-    if (root !== null) {
-        render(<Component />, root);
-    }
-};
-```
-
-+ index.ts
-
-```typescript
-export { [FCName]Page } from './[FCName]Page';
-```
-
-___
-
-## REC Pages With ReactQuery ##
-
-### Structure ###
-
-```
-[Name]
-|--__mocks__
-|--__spec__
-|  |--[Name]Context.spec.tsx
-|  |--[Name]Page.spec.tsx
-|--hooks
-|  |--hooks-types.ts
-|  |--index.ts
-|--services
-|  |--__spec__
-|  |  |--index.spec.ts
-|  |--index.ts
-|--store
-|  |--__spec__
-|  |  |--action.spec.ts
-|  |  |--reducer.spec.ts
-|  |--action-types.ts
-|  |--action.ts
-|  |--index.ts
-|  |--initialState.ts
-|  |--reducer.ts
-|--styles
-|  |--index.ts
-|--types
-|  |--index.ts
-|--utils
-|  |--__spec__
-|  |  |--index.spec.ts
-|  |--index.ts
-|--[Name]Context.tsx
-|--[Name]Page.tsx
-|--index.ts
-```
-
-### Details ###
-
-+ spec/[Name]Context.spec.tsx
-
-```typescript
-import * as React from 'react';
-import { render, screen } from '@testing-library/react';
-import { initialState } from '../store/initialState';
-import { use[FCName]Dispatch, use[FCName]State, [FCName]Provider } from '../[FCName]Context';
-import { [FCName]StateType } from '../types';
-
-jest.mock('../store');
-jest.mock('react', () => ({
-    ...jest.requireActual('react'),
-    useContext: jest.fn(),
-}));
-
-describe('[FCName]Context', () => {
-    it('should return context when use[FCName]State is called', () => {
-        // Given
-        jest.spyOn(React, 'useContext').mockReturnValue(initialState);
-
-        // When
-        const context = use[FCName]State();
-
-        // Then
-        expect(context).toEqual({});
-
-    });
-});
-```
-
-+ spec/[Name]Page.spec.tsx
-
-```typescript
-import * as React from 'react';
-import { render } from 'react-dom';
-import { renderToDOM, [FCName]Page } from '../[FCName]Page';
-
-jest.mock('react-dom', () => ({
-    render: jest.fn(),
-}));
-jest.mock('../[FCName]Context.tsx');
-
-
-describe('[FCName]Page', () => {
-    it('should set the initialState', () => {
-        
-    });
-});
-```
-
-+ spec/[Name]Page.spec.tsx
-
-```typescript
-import * as React from 'react';
-import { render } from 'react-dom';
-import { renderToDOM, [FCName]Page } from '../[FCName]Page';
-
-jest.mock('react-dom', () => ({
-    render: jest.fn(),
-}));
-jest.mock('../[FCName]Context.tsx');
-
-
-describe('[FCName]Page', () => {
-    it('should set the initialState', () => {
-        
-    });
-});
-```
-
-+ services/spec/index.spec.ts
-
-```typescript
-import * as Fetch from '../../../../utils';
-
-jest.mock('../../../../utils', () => ({
-    Get: jest.fn(() => Promise.resolve({
-        json: () => { }
-    })),
-    Post: jest.fn((url, data) => Promise.resolve({
-        json: () => { }
-    })),
-}));
-
-describe('[FCName]Service', () => {
-    it('should ', () => {
-        // Given
-
-        // When
-
-        // Then
-
-    });
-});
-```
-
-+ store/spec/reducer.spec.ts
-
-```typescript
-import * as React from 'react';
-import { initialState } from '../initialState';
-import { reducer } from '../reducer';
-
-describe('[FCName] reducer', () => {
-    it('should return initialState', () => {
-        expect(initialState).toEqual({});
-    });
-});
-```
-
-+ store/ action-types.ts
-
-```typescript
-export const SAMPLE = '[FCName]/SAMPLE'
-```
-
-+ store/action.ts
-
-```typescript
-import * as ActionTypes from './action-types';
-import { DispatchType } from '../types';
-
-export const GetSample = (dispatch: DispatchType) => dispatch({
-    type: ActionTypes.SAMPLE
-});
-```
-
-+ store/index.ts
-
-```typescript
-export { reducer } from './reducer';
-export { initialState } from './initialState';
-```
-
-+ store/initialState.ts
-
-```typescript
-import { [FCName]StateType } from '../types';
-
-export const initialState: [FCName]StateType = {}
-```
-
-+ store/reducer.ts
-
-```typescript
-import * as ActionTypes from './action-types';
-import { [FCName]StateType } from '../types';
-
-export const reducer = (state: [FCName]StateType, action: ActionType ): [FCName]StateType => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-};
-```
-
-+ styles/index.ts
-
-```typescript
-import { makeStyles } from '@talentsoft/design-system/styles';
-
-export const useStyles = makeStyles((theme) => ({
-    root: {
-        
-    }
-}));
-```
-
-+ types/index.ts
-
-```typescript
-export interface I[FCName]Model extends IBackOfficePageModel {
-    
-}
-
-type Sample = {
-    type: '[FCName]/SAMPLE'
-};
-
-export type ActionType = (
-    Sample
-);
-
-export type DispatchType = (action: ActionType) => void;
-
-export interface [FCName]StateType {
-
-};
-
-export type [FCName]ProviderType = { children: React.ReactNode, initialState: [FCName]StateType };
-```
-
-+ utils/spec/index.spec.ts
-
-```typescript
-describe('Name of the group', () => {
-    it('should ', () => {
-        // Given
-
-        // When
-
-        // Then
-    });
-});
-```
-
-+ --[Name]Context.tsx
-
-```typescript
-import * as React from 'react';
-import { reducer } from './store/reducer';
-import { DispatchType, [FCName]ProviderType, [FCName]StateType } from './types';
-
-const [FCName]Context = React.createContext<[FCName]StateType | undefined>(undefined);
-const [FCName]DispatchContext = React.createContext<DispatchType | undefined>(undefined);
-
-const [FCName]Provider = ({ initialState, children}: [FCName]ProviderType) => {
-    const [state, dispatch] = React.useReducer(reducer, initialState);
-    return (
-        <[FCName]Context.Provider value={state}>
-            <[FCName]DispatchContext.Provider value={dispatch}>
-                {children}
-            </[FCName]DispatchContext.Provider>
-        </[FCName]Context.Provider>
-    );
-};
-
-const use[FCName]State = () => {
-    const context = React.useContext([FCName]Context);
-
-    if (context === undefined) {
-        throw new Error('use[FCName]State must be used within a [FCName]Provider');
-    }
-
-    return context;
-};
-
-const use[FCName]Dispatch = () => {
-    const context = React.useContext([FCName]DispatchContext);
-
-    if (context === undefined) {
-        throw new Error('use[FCName]Dispatch must be used within a [FCName]Provider');
-    }
-
-    return context;
-};
-
-export { [FCName]Provider, use[FCName]State, use[FCName]Dispatch };
-```
-
-+ --[Name]Page.tsx
-
-```typescript
-import * as React from 'react';
-import { render } from 'react-dom';
-import PageBase from '../page-base';
-import { RecruitingThemeProvider } from '../../assets/Theme/recruiting-theme';
-import { [FCName]Provider } from './VacancyCreationContext';
-import { I[FCName]Model, [FCName]StateType } from './types';
-import { initialState } from './store';
-
-export class [FCName]Page extends PageBase {
-    initialState: [FCName]StateType;
-
-    constructor(model: I[FCName]Model) {
-        super('[FCName]');
-        this.initialState = {
-            ...initialState,
-            breadcrumbs: model.NavigationContext.Breadcrumbs.map(b => ({
-                label: b.Label,
-                link: b.Link
-            })),
-            currentCulture: model.CurrentCulture,
-            pageTitle: model.PageTitle,
-            themeColor: model.ThemeColor,
-        };
-    };
-    
-    run(htmlElement: HTMLElement) {
-        const Component = () => (
-                <RecruitingThemeProvider
-                    productionPrefix="rec[FCName]"
-                    currentCulture={this.initialState.currentCulture}
-                >
-                    <[FCName]Provider initialState={this.initialState}>
-                       // YOUR COMPONENT 
-                    </[FCName]Provider>
-                </RecruitingThemeProvider>
-        );
-        
-        renderToDOM(Component, htmlElement);
-    }
-}
-
-export const renderToDOM = (Component: React.FunctionComponent, root: HTMLElement | null): void => {
-    if (root !== null) {
-        render(<Component />, root);
-    }
-};
-
-
-```
-
-+ index.ts
-
-```typescript
-export { [FCName]Page } from './[FCName]Page';
-```
-
-___
+__
 
 ## useMutation Hooks ##
 
-### Structure ###
+### Structure useMutation Hooks ###
 
-```
+```text
 [Name]
 |--[Name].spec.tsx
 |--[Name].tsx
 |--index.tsx
 ```
 
-### Details ###
+### Details useMutation Hooks ###
 
 + --[Name].spec.tsx
 
-```typescript
+```jsx
 import * as React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider  } from 'react-query';
@@ -1056,33 +409,33 @@ const renderWithClient = (client: QueryClient, ui: React.ReactElement) => {
     };
 };
 
-describe('[FCName]', () => {
+describe('use[Name]', () => {
     const queryCache = new QueryCache();
     const mutationCache = new MutationCache();
     const queryClient = new QueryClient({ queryCache, mutationCache });
 
-    it('should ', async () => {
-        function Page() {
-            
-            const { mutate, data = { label: ''} } = [FCName]();
-      
-            return (
-                <div>
-                    <h1 data-testid="title">{data['label']}</h1>
-                    <button onClick={() => mutate()}>mutate</button>
-                </div>
-            );
-        }
-        const { getByTestId, getByText } = renderWithClient(queryClient, <Page />);
+   it("should ", async () => {
+    function Page() {
+      const { mutate, data = { label: "" } } = use[Name]();
 
-        expect(getByTestId('title').textContent).toBe('');
-        fireEvent.click(getByText('mutate'));
+      return (
+        <div>
+          <h1 data-testid="title">{data["label"]}</h1>
+          <button onClick={() => mutate()}>mutate</button>
+        </div>
+      );
+    }
+    const { getByTestId, getByText } = renderWithClient(queryClient, <Page />);
 
-        await waitFor(() => getByTestId('title'));
+    expect(getByTestId("title").textContent).toBe("");
+    fireEvent.click(getByText("mutate"));
 
-        expect(getByTestId('title').textContent).toBe();
-    });
+    await waitFor(() => getByTestId("title"));
+
+    expect(getByTestId("title").textContent).toBe();
+  });
 });
+
 ```
 
 + --[Name].tsx
@@ -1090,7 +443,7 @@ describe('[FCName]', () => {
 ```typescript
 import { useMutation } from 'react-query';
 
-const [FCName] = () => useMutation(() => {
+const [Name] = () => useMutation(() => {
   // return fetch("/api/data") as json
   return "Hello";
 }, {
@@ -1111,36 +464,36 @@ const [FCName] = () => useMutation(() => {
       },
 });
 
-export default [FCName];
+export default [Name];
 ```
 
 + --index.tsx
 
 ```typescript
- export { default } from './[FCName]';
+ export { default } from './[Name]';
 ```
 
 ___
 
 ## useQuery Hooks ##
 
-### Structure ###
+### Structure useQuery Hooks ###
 
-```
+```text
 [Name]
 |--[Name].spec.tsx
 |--[Name].tsx
 |--index.tsx
 ```
 
-### Details ###
+### Details useQuery Hooks ###
 
 + --[Name].spec.tsx
 
 ```typescript
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { renderHook } from '@testing-library/react-hooks';
-import { [FCName] } from './[FCName]';
+import { [Name] } from './[Name]';
 
 const queryClient = new QueryClient();
 const wrapper = ({ children }) => (
@@ -1149,9 +502,9 @@ const wrapper = ({ children }) => (
     </QueryClientProvider>
 );
 
-describe('[FCName]', () => {
+describe('[Name]', () => {
     it('should ', async () => {        
-        const { result, waitFor } = renderHook(() => [FCName](), { wrapper });
+        const { result, waitFor } = renderHook(() => [Name](), { wrapper });
 
         await waitFor(() => result.current.isSuccess);
         
@@ -1165,42 +518,42 @@ describe('[FCName]', () => {
 ```typescript
 import { useQuery } from 'react-query';
 
-const [FCName] = () => {
+const [Name] = () => {
     return useQuery("queryHooks", () => {
         // return fetch("/api/data") as json
         return "Hello";
     });
 };
 
-export default [FCName];
+export default [Name];
 ```
 
 + --index.tsx
 
 ```typescript
-export { default } from './[FCName]';
+export { default } from './[Name]';
 ```
 ___
 
 ## Machine XState ##
 
-### Structure ###
+### Structure Machine XState ###
 
-```
+```text
 [Name]
 |--[Name].spec.tsx
 |--[Name].tsx
 |--index.tsx
 ```
 
-### Details ###
+### Details Machine XState ###
 
 + --[Name].spec.tsx
 
 ```typescript
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { renderHook } from '@testing-library/react-hooks';
-import { [FCName] } from './[FCName]';
+import { [Name] } from './[Name]';
 
 const queryClient = new QueryClient();
 const wrapper = ({ children }) => (
@@ -1209,9 +562,9 @@ const wrapper = ({ children }) => (
     </QueryClientProvider>
 );
 
-describe('[FCName]', () => {
+describe('[Name]', () => {
     it('should ', async () => {        
-        const { result, waitFor } = renderHook(() => [FCName](), { wrapper });
+        const { result, waitFor } = renderHook(() => [Name](), { wrapper });
 
         await waitFor(() => result.current.isSuccess);
         
@@ -1225,18 +578,119 @@ describe('[FCName]', () => {
 ```typescript
 import { useQuery } from 'react-query';
 
-const [FCName] = () => {
+const [Name] = () => {
     return useQuery("queryHooks", () => {
         // return fetch("/api/data") as json
         return "Hello";
     });
 };
 
-export default [FCName];
+export default [Name];
 ```
 
 + --index.tsx
 
 ```typescript
-export { default } from './[FCName]';
+export { default } from './[Name]';
 ```
+
+__
+
+## Action Assign XState ##
+
+### Structure Action Assign XState ###
+
+```text
+[Name]Assign
+|--[Name]Assign.spec.ts
+|--[Name]Assign.ts
+```
+
+### Details Action Assign XState ###
+
++ [Name]Assign.spec.ts
+
+```typescript
+import { TimerContext } from '../../types';
+import { ActionTypes } from "xstate";
+import { [Name]Assign, [Name]Assignment } from "./assign[Name]";
+
+describe('assign[Name]', () => {
+    it('should return object', () => {
+        const result = assign[Name];
+        expect(result.type).toEqual(ActionTypes.Assign);
+    });
+    it('should return assignement', () => {
+        const context: Context = {
+            
+        }
+        const newContext = assignment[Name](context, { type: ''});
+        expect(newContext.).toEqual();
+    });
+});
+```
+
++ [Name]Assign.ts
+
+```typescript
+import { ActionTypes, AssignAction } from "xstate";
+
+export const [Name]Assignment = (context: Context, event: Event): Partial<Context> => {
+    return {
+        elapsed: event.value
+    };
+}
+
+export const [Name]Assign : AssignAction<Context, Event> = {
+    type: ActionTypes.Assign,
+    assignment: [Name]Assignment
+}
+```
+
+__
+
+## Guard XState ##
+
+### Structure Guard XState ###
+
+```text
+[Name]
+|--[Name]Guard.spec.ts
+|--[Name]Guard.ts
+```
+
+### Details Guard XState ###
+
++ [Name]Assign.spec.ts
+
+```typescript
+import { GuardMeta } from 'xstate';
+import { Context, Event } from '../types';
+import { [Name]Guard } from './[Name]Guard';
+
+describe('[Name]Guard', () => {
+    it('should be defined', () => {
+        expect([Name]Guard).toBeDefined();
+    });
+    it('should return true', () => {
+        const result = [Name]Guard({ a: 2, b: 1} as Context, { type: "EVENT_1"}, {} as GuardMeta<Context, Event>);
+        expect(result).toBeTruthy();
+    });
+    it('should return false', () => {
+        const result = [Name]Guard({ a: 0, b: 1} as Context, { type: "EVENT_1"}, {} as GuardMeta<Context, Event>);
+        expect(result).toBeFalsy();
+    });
+});
+
+```
+
++ [Name]Assign.ts
+
+```typescript
+import { ConditionPredicate } from "xstate";
+import { Context, Event } from "../types";
+
+export const [Name]Guard: ConditionPredicate<Context, Event> = (context: Context) => context.a > context.b;
+```
+
+__

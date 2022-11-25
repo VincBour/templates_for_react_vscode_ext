@@ -1,1 +1,1 @@
-export { default } from './[FCName]';
+export { use[FCName] } from './use[FCName]';

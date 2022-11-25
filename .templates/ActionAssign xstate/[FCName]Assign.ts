@@ -2,7 +2,7 @@ import { ActionTypes, AssignAction } from "xstate";
 
 export const [FCName]Assignment = (context: Context, event: Event): Partial<Context> => {
     return {
-        elapsed: 
+        elapsed: event.value
     };
 }
 

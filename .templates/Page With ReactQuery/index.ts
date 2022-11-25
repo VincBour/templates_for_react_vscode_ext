@@ -1,1 +1,0 @@
-export { [FCName]Page } from './[FCName]Page';
