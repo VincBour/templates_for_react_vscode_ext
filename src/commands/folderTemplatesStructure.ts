@@ -2,6 +2,7 @@ import { Uri } from "vscode";
 import { createStructure } from "../actions/createStructure";
 import { getComponentName, getConfiguration, getTargetUri, getTemplates, pickTemplate, pickTemplateName } from "../lib";
 import { channel } from "../outpuChannel/TemplatesChannel";
+import { FolderType } from "../types";
 import { changeCase } from "../utils/string/changeCase";
 import { showError, showInfo } from "../utils/vscode";
 
@@ -14,7 +15,7 @@ export const folderTemplatesStructure = async (resource: Uri | string | undefine
     }
     channel.appendLine('get path => ok');
 
-    const configurations = getConfiguration("structures") || [];
+    const configurations = getConfiguration<FolderType[]>("structures") || [];
     channel.appendLine('get structure configuration => ok');
 
     const templatesAvailable = getTemplates(templatesFolderPath, configurations);

@@ -15,18 +15,24 @@ ___
 
 File > preference > settings
 
-In User Settings go to Extensions > Folder Templates
++ In User Settings go to Extensions > Templates For React > Structures for templates configuration
 
 ### disableTemplate ###
 
 You can enable/disable a template with the **disableTemplate** property in the extension setting.
 If **disableTemplate** is *true*, then the corresponding template will no longer appear in the list of available templates.
 
-### namingConvention ### ###
+### namingConvention ###
 
-you can add a convention naming with the **namingConvention** property.
+You can add a convention naming with the **namingConvention** property.
 By default **namingConvention** is equal to *'noNC'* (no naming convention).
 You can modify *'noNC'* with: *'camelCase'*, *'pascalCase'* or *'snakeCase'*".
+
+In User Settings go to Extensions > Templates For React > Props for global configuration
+
+### import React ###
+
+By default the templates are built on versions lower than 18 for react. By enabling the isReact18 property, you can remove the import line from react; 
 ___
 
 ## Templates Available ##
@@ -52,6 +58,7 @@ ___
 + [Action Assign xstate](#action-assign-xstate)
 
 + [Guard xstate](#guard-xstate)
+
 ___
 
 ## Context ##
@@ -541,57 +548,49 @@ ___
 
 ```text
 [Name]
-|--[Name].spec.tsx
-|--[Name].tsx
-|--index.tsx
+|--actions
+    |--actionExample.spec.ts
+    |--actionExample.ts
+|--guards
+    |--guardExample.spec.ts
+    |--guardExample.ts
+|--services
+|--types
+    |--index.ts
+|--[Name]Machine.ts
 ```
 
 ### Details Machine XState ###
 
-+ --[Name].spec.tsx
++ --actions > actionExample.spec.ts
 
 ```typescript
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { renderHook } from '@testing-library/react-hooks';
-import { [Name] } from './[Name]';
-
-const queryClient = new QueryClient();
-const wrapper = ({ children }) => (
-    <QueryClientProvider client={queryClient}>
-        {children}
-    </QueryClientProvider>
-);
-
-describe('[Name]', () => {
-    it('should ', async () => {        
-        const { result, waitFor } = renderHook(() => [Name](), { wrapper });
-
-        await waitFor(() => result.current.isSuccess);
-        
-        expect(result.current.data).toEqual("Hello");
-    });
-});
 ```
 
-+ --[Name].tsx
++ --actions > actionExample.ts
 
 ```typescript
-import { useQuery } from 'react-query';
-
-const [Name] = () => {
-    return useQuery("queryHooks", () => {
-        // return fetch("/api/data") as json
-        return "Hello";
-    });
-};
-
-export default [Name];
 ```
 
-+ --index.tsx
++ --guards > guardExample.spec.ts
 
 ```typescript
-export { default } from './[Name]';
+```
+
++ --actions > guardExample.ts
+
+```typescript
+```
+
++ --types > index.ts
+
+```typescript
+```
+
++ --[Name]Machine.ts
+
+```typescript
+
 ```
 
 __

@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 import { getConfiguration } from '../../lib';
 import { getWorkspaceUri } from '../../utils/path';
 import * as path from 'path';
+import { FolderType } from '../../types';
 
 suite('Extension Test Suite', () => {
 
@@ -14,7 +15,7 @@ suite('Extension Test Suite', () => {
 	});
 
 	test('getConfiguration test', () => {
-		const result = getConfiguration('structures');
+		const result = getConfiguration<FolderType[]>('structures');
 		assert.strictEqual(result?.[0].name, "DefaultName");
 		assert.deepStrictEqual(result?.[0].structure,[
 			{

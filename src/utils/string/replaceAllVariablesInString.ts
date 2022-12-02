@@ -1,10 +1,12 @@
 import { getReplaceRegexp } from ".";
+import { getConfiguration } from "../../lib";
 
 export const replaceAllVariablesInString = (
     target: string,
     value: string,
     replaceValue: string
 ) => {
-    const result = target.replace(getReplaceRegexp(value), replaceValue);
+    let result = target.replace(getReplaceRegexp(value), replaceValue);
+   
     return result;
 };

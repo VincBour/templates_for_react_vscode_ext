@@ -110,6 +110,13 @@
 						}
 					],
 					"description": "you can enable/disable template with the 'disableTemplate' property. If disableTemplate is true then the template will no longer appear in the list of available templates.\n you can add a convention naming with the 'namingConvention' property. By default 'namingConvention' is noNC (no naming convention). You can modify noNC with: camelCase, pascalCase, kebabCase or snakeCase"
+				},
+				"templates_for_react.props": {
+					"scope": "window",
+					"type":"object",
+					"default" :{
+						"isReact18": false
+					}
 				}
 			}
 		}

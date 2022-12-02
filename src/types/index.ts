@@ -4,6 +4,7 @@ export type FolderType = {
     withDirectory?: boolean;
     disableTemplate?: boolean;
     namingConvention?: string;
+    isReact18?: boolean;
 };
 
 export type FileSettingsType = {
