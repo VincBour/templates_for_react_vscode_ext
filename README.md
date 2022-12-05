@@ -32,7 +32,7 @@ In User Settings go to Extensions > Templates For React > Props for global confi
 
 ### import React ###
 
-By default the templates are built on versions lower than 18 for react. By enabling the isReact18 property, you can remove the import line from react; 
+By default the templates are built on versions lower than 18 for react. By enabling the isReact18 property, you can remove the import line from react;
 ___
 
 ## Templates Available ##
@@ -693,3 +693,7 @@ export const [Name]Guard: ConditionPredicate<Context, Event> = (context: Context
 ```
 
 __
+
+### © Copyright ###
+
+icon used => https://icon-icons.com/icon/folder-react/161285

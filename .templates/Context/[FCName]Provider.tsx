@@ -1,4 +1,5 @@
 import * as React from "react";
+import { PropsWithChildren } from "react";
 
 export interface [FCName]ContextProps { }
 
